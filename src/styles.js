@@ -168,17 +168,44 @@ export const GlobalStyles = createGlobalStyle`
             filter: blur(7px);
             transform: translateY(20px) scaleY(.3) scaleX(.9);
         }
-
-        // padding-top: ${theme.spacingSmall}px;
-        // padding-bottom: ${theme.spacingLarge}px;
-        // transition: padding-bottom .5s ease;
-        // cursor: pointer;
-        
-        // :hover {
-        //     padding-top: ${theme.spacing}px;
-        // }
     }
-    
+
+    .two-face-container:hover {
+        .vec { background: ${theme.complement}; }
+
+        :active { transform: scale(.9); }
+    }
+
+    .two-face {
+        width: 250px;
+        height: 250px;
+        border-radius: 999px;
+        overflow: hidden;
+        user-select: none;
+        user-drag: none;
+        transition: all .5s ease;
+        
+        &.vec {
+            position: absolute;
+            left: 0;
+            background: ${theme.base};
+        }
+
+        &.hidden { opacity: 0; }
+    }
+
+    .flipping {
+        animation: flip-coin 1.25s ease-out;
+    }
+
+    @keyframes flip-coin {
+        from { transform: rotateX(0); }
+        to { transform: rotateX(720deg); }
+    }
+
+    .shrink {
+        transform: scale(0);
+    }
 
     .social-icon {
         p {
@@ -221,12 +248,16 @@ export const GlobalStyles = createGlobalStyle`
     .trans { transition: all .5s ease; }
     .rel { position: relative; }
     .abs { position: absolute; }
+    
+    .dark-bg { background-color: ${theme.base}; }
+    .light-bg { background-color: ${theme.complement}; }
 
     // an element that's rendered size is needed, but only for js computation
     .reference {
         opacity: 0;
         position: absolute;
         user-select: none;
+        user-drag: none;
     }
 
     // Small margins
@@ -302,7 +333,7 @@ export const GlobalStyles = createGlobalStyle`
     p  { font-size: 1rem; }
     h1 { font-size: 3rem; margin-bottom: ${theme.spacingSmall}px}
     h2 { font-size: 2rem; margin-bottom: ${theme.spacingSmall}px}
-    h3 { font-size: 1.3rem; margin-bottom: ${theme.spacingSmall}px}
+    h3 { font-size: 1.6rem; margin-bottom: ${theme.spacingSmall}px}
 
     h1, h2, h3 { font-weight: ${theme.bold}; }
 
@@ -312,6 +343,11 @@ export const GlobalStyles = createGlobalStyle`
 
     .light { font-weight: ${theme.light} }
     .bold { font-weight: ${theme.bold} }
+
+
+    .parallax-effect {
+        transform-style: preserve-3d;
+    }
 `
 
 

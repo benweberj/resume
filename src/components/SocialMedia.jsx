@@ -7,21 +7,21 @@ const SocialMedia = props => {
    const scale = .1
 
    function turnOn(idx) {
-      let s = onStatus.slice(0)
+      let s = onStatus.slice()
       s[idx] = true
       setOnStatus(s)
    }
 
    function turnOff(idx) {
-      let s = onStatus.slice(0)
+      let s = onStatus.slice()
       s[idx] = false
       setOnStatus(s)
    }
 
-   function setHov(idx, val) {
-      val ? turnOff(idx) : turnOn(idx)
-      let h = hovStatus.slice(0)
-      h[idx] = val
+   function setHov(idx, bool) {
+      bool ? turnOff(idx) : turnOn(idx)
+      let h = hovStatus.slice()
+      h[idx] = bool
       setHovStatus(h)
    }
 
@@ -31,7 +31,7 @@ const SocialMedia = props => {
          for (let j = 0; j <= i; j++) {
             s[j] = true
          }
-         setTimeout(() => setOnStatus(s), 700*i)
+         setTimeout(() => setOnStatus(s), 500*i)
       }
    }, [])
 
@@ -82,9 +82,9 @@ const SocialMedia = props => {
             const hov = !!hovStatus[i]
 
             return (
-               <div key={name} className='ms ps pointer iflex col fullh center social-icon'
-                  onMouseEnter={() => setHov(i, true)}
-                  onMouseLeave={() => setHov(i, false)}
+               <div key={name} id={`social-${i}`} className='ms ps pointer iflex col fullh center social-icon'
+                  onMouseOver={() => setHov(i, true)}
+                  onMouseOut={() => setHov(i, false)}
                   onClick={() => window.open(icons[name][1], '_blank')}
                >
                   {icons[name][0]}

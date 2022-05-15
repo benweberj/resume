@@ -34,7 +34,7 @@ function Path(props) {
   const [offset, setOffset] = useState({})
   const [len, setLen] = useState(1)
   const ref = useRef(null)
-  const { circle, rect, on, sq, styles, weight } = props
+  const { circle, rect, on, sq, styles, weight, time=.5 } = props
   
 
   useEffect(() => {
@@ -54,7 +54,7 @@ function Path(props) {
     strokeLinecap: 'round',
     strokeLinejoin: 'round',
     style: {
-      transition: 'all .5s ease-in-out',
+      transition: `all ${time}s ease-in-out`,
       ...styles,
     },
   }
@@ -63,7 +63,7 @@ function Path(props) {
     opacity: on ? 1 : 0,
     strokeWidth: props.weight || 0,
     style: {
-      transition: 'all 1s ease, opacity .5s ease',
+      transition: `all ${time + .5}s ease, opacity ${time}s ease`,
       transform: sq ? (!on ? 'rotate(90deg)' : undefined) : (on ? 'scaleY(1)' : 'scaleY(0)'),
       transformOrigin: 'bottom left',
       ...styles,
@@ -73,7 +73,7 @@ function Path(props) {
     fill: on ? theme.complement : `${theme.accent}00`,
     opacity: on ? 1 : 0,
     style: {
-      transition: 'all 1s ease',
+      transition: `all ${time + .5}s ease`,
       transform: on ? 'scale(1)' : ` scale(0) translate(${offset.width*3}px, ${offset.height*5}px)`,
       ...styles,
     },

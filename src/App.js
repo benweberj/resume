@@ -6,25 +6,30 @@ import Landing from './Landing'
 import Animations from './Animations'
 
 const App = () => {
-    const [page, setPage] = useState(2)
+    const [page, setPage] = useState(0)
     const [ready, setReady] = useState(false)
 
     // lets get this shit started
     useEffect(() => {
-        setTimeout(() => setReady(!ready), 1.5*1000)
+        setTimeout(() => setReady(!ready), 1*1000)
     }, [])
+
+    function handlePageChange(pageNum) {
+        setPage(pageNum)
+
+    }
 
     return (
         <>
             <GlobalStyles />
             <ReactPageScroller
                 animationTimer={750}
-                pageOnChange={p => setPage(p)}
+                pageOnChange={handlePageChange}
                 customPageNumber={page}
             >
                 {[
-                    <Landing ready={ready} goto={num => setPage(num) } />,
-                    <Animations />
+                    <Landing ready={ready && page==0} goto={num => setPage(num) } />,
+                    <Animations ready={ready && page==1} />
                 ]}
             </ReactPageScroller>
         </>
