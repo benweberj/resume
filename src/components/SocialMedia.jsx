@@ -6,6 +6,8 @@ const SocialMedia = props => {
    const [hovStatus, setHovStatus] = useState([false, false, false, false])
    const scale = .1
 
+   const { ready } = props
+
    function turnOn(idx) {
       let s = onStatus.slice()
       s[idx] = true
@@ -26,14 +28,17 @@ const SocialMedia = props => {
    }
 
    useEffect(() => {
-      for (let i = 0; i < onStatus.length; i++) {
-         let s = onStatus.slice(0)
-         for (let j = 0; j <= i; j++) {
-            s[j] = true
+      if (ready) {
+         for (let i = 0; i < onStatus.length; i++) {
+            let s = onStatus.slice(0)
+            for (let j = 0; j <= i; j++) {
+               s[j] = true
+            }
+            setTimeout(() => setOnStatus(s), 500*i)
          }
-         setTimeout(() => setOnStatus(s), 500*i)
+
       }
-   }, [])
+   }, [ready])
 
    const icons = {
       'GitHub': [

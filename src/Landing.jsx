@@ -15,7 +15,7 @@ const Landing = props => {
         <section className='full-page landing-page flex col center'>
             <TwoFace ready={ready} className='psb' />
             <MyName ready={ready} />
-            <SocialMedia />
+            <SocialMedia ready={ready} />
 
             <div className='flex col center next-page' onClick={() => goto(1)}>
                 <svg width='33' height='16' viewBox='0 0 33 16' fill='none'>

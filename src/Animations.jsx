@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Parallax from './components/Parallax'
 import Path from './components/Path'
-import starwars from './starwars'
 
 function Animations(props) {
     const { ready } = props
