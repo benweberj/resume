@@ -170,6 +170,11 @@ export const GlobalStyles = createGlobalStyle`
         }
     }
 
+    .two-face-container {
+        width: 250px;
+        height: 250px;
+    }
+
     .two-face-container:hover {
         .vec { background: ${theme.complement}; }
 
@@ -347,6 +352,7 @@ export const GlobalStyles = createGlobalStyle`
 
     .parallax-effect {
         transform-style: preserve-3d;
+        * { transform-style: preserve-3d; }
     }
 `
 

@@ -29,7 +29,7 @@ function MyName(props) {
         if (initialReady && !ready) { // time to start title animation
             setTimeout(() => setReady(true), 1*1000)
         }
-    })
+    }, [initialReady])
 
     return (
         <>
