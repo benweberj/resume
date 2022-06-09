@@ -34,8 +34,11 @@ function Path(props) {
   const [offset, setOffset] = useState({})
   const [len, setLen] = useState(1)
   const ref = useRef(null)
-  const { circle, rect, on, sq, styles, weight, time=.5 } = props
+  const { circle, rect, on=true, hidden=false, sq, styles, weight, time=.5, delay='0s', round } = props
   
+  useEffect(() => {
+    // console.log(on)
+  }, [on])
 
   useEffect(() => {
     const l = ref?.current
@@ -49,12 +52,13 @@ function Path(props) {
     strokeDasharray: len,
     // opacity: on ? 1 : 0,
     strokeDashoffset: on ? 0 : len,
-    stroke: on ? theme.complement : `${theme.accent}00` ,
+    stroke: theme.complement,
     strokeWidth: on ? (weight || 20) : 0,
-    strokeLinecap: 'round',
-    strokeLinejoin: 'round',
+    strokeLinecap: round && 'round',
+    strokeLinejoin: round && 'round',
     style: {
-      transition: `all ${time}s ease-in-out`,
+      transition: `all ${time}s ease-in-out ${delay}`,
+      // transitionDelay: delay,
       ...styles,
     },
   }
@@ -80,9 +84,12 @@ function Path(props) {
   }
 
 
-  if (circle) return <circle onClick={() => console.log(offset)} ref={ref} {...circleStyles} {...props} />
-  if (rect) return <rect ref={ref} {...rectStyles} {...props} />
-  return <path ref={ref} {...pathStyles} {...props} />
+  if (circle) return <circle  className={`${hidden && 'hidden'} ${props.className}`}onClick={() => console.log(offset)} ref={ref} {...circleStyles} {...props} />
+  if (rect) return <rect  className={`${hidden && 'hidden'} ${props.className}`}ref={ref} {...rectStyles} {...props} />
+  // return <path  className={`${hidden && 'hidden'} ${props.className}`} ref={ref} {...pathStyles} {...props} />
+  return <>
+    <path className={`${hidden && 'hidden'} ${props.className}`} ref={ref} {...pathStyles} {...props} />
+  </>
 }
 
 export default Path

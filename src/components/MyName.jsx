@@ -33,12 +33,12 @@ function MyName(props) {
 
     return (
         <>
-            <h1 ref={nameRef} style={{
+            <h1 className='notouch' ref={nameRef} style={{
                 ...nameStyles,
                 transition: `transform ${slideDuration}ms ease`,
             }}>Ben Weber</h1>
 
-            <h3 ref={titleRef} className='light hazy trans' style={{
+            <h3 ref={titleRef} className='light hazy trans notouch' style={{
                 ...titleStyles,
             }}>Web Developer</h3>
         </>

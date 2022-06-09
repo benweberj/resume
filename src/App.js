@@ -3,10 +3,11 @@ import ReactPageScroller from 'react-page-scroller'
 import { GlobalStyles } from './styles'
 
 import Landing from './Landing'
-import Animations from './Animations'
+import SketchGallery from './SketchGallery'
 
 const App = () => {
     const [page, setPage] = useState(0)
+
     const [ready, setReady] = useState(false)
 
     // lets get this shit started
@@ -16,9 +17,14 @@ const App = () => {
 
     function handlePageChange(pageNum) {
         setPage(pageNum)
-
     }
 
+
+    // return <>
+    // <GlobalStyles />
+    // <div className='full-page'><SketchGallery /></div>
+    // {/* <Landing ready={ready} goto={num => setPage(num) } /> */}
+    // </>
     return (
         <>
             <GlobalStyles />
@@ -29,7 +35,10 @@ const App = () => {
             >
                 {[
                     <Landing ready={ready && page==0} goto={num => setPage(num) } />,
-                    <Animations ready={ready && page==1} />
+                    // <SketchGallery />
+                    <div className='full-page flex center'><SketchGallery ready={ready && page==1} /></div>
+                    // <Games ready={ready && page==1} goto={num => setPage(num)}  />
+                    // <Animations ready={ready && page==1} />
                 ]}
             </ReactPageScroller>
         </>

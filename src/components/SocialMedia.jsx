@@ -8,6 +8,10 @@ const SocialMedia = props => {
 
    const { ready } = props
 
+   // useEffect(() => {
+
+   // }, [])
+
    function turnOn(idx) {
       let s = onStatus.slice()
       s[idx] = true
@@ -36,7 +40,6 @@ const SocialMedia = props => {
             }
             setTimeout(() => setOnStatus(s), 500*i)
          }
-
       }
    }, [ready])
 
@@ -82,18 +85,18 @@ const SocialMedia = props => {
    }
 
    return (
-      <div className='iflex stretch'>
+      <div id='social-container' className='iflex stretch mmt'>
          {Object.keys(icons).map((name, i) => {
-            const hov = !!hovStatus[i]
+            const hov = hovStatus[i]
 
             return (
-               <div key={name} id={`social-${i}`} className='ms ps pointer iflex col fullh center social-icon'
-                  onMouseOver={() => setHov(i, true)}
-                  onMouseOut={() => setHov(i, false)}
+               <div key={name} id={`social-${i}`} className='pmx pointer iflex col fullh center social-icon'
+                  onMouseOver={() => { console.log('entering:', name); setHov(i, true) }}
+                  onMouseOut={() => { console.log('leaving:', name); setHov(i, false) }}
                   onClick={() => window.open(icons[name][1], '_blank')}
                >
                   {icons[name][0]}
-                  <p>{name}</p>
+                  <p className='notouch'>{name}</p>
                </div>
             )
          })}
