@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.js": "/resume/static/js/main.cb401a18.js",
+    "static/media/real.png": "/resume/static/media/real.297eafd4a0891dbe86c0.png",
+    "static/media/vec-t.png": "/resume/static/media/vec-t.f6f972922b3a9fceb3fe.png",
+    "static/media/options.png": "/resume/static/media/options.5a9b1f24255c107115bc.png",
+    "index.html": "/resume/index.html",
+    "main.cb401a18.js.map": "/resume/static/js/main.cb401a18.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.cb401a18.js"
+  ]
+}
