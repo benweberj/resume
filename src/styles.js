@@ -220,7 +220,7 @@ export const GlobalStyles = createGlobalStyle`
         cursor: pointer;
         transition: all .35s ease;
 
-        &.selected {
+        &.selected, :hover {
             background: ${theme.lightColor};
             color: ${theme.darkColor};
         }
@@ -288,13 +288,13 @@ export const GlobalStyles = createGlobalStyle`
         button {
             padding: 6px 20px;
             font-size: .8rem;
-            transition: all .5s ease;
+            transition: all .25s ease;
             margin: 2px;
 
             :hover {
                 background: ${theme.lightColor};
                 color: ${theme.darkColor};
-                transform: scale(1.05);
+                // transform: scale(1.05);
             }
         }
 
@@ -338,6 +338,121 @@ export const GlobalStyles = createGlobalStyle`
         position: absolute;
         left: 0;
         top: 0;
+    }
+
+    button.wordle-solve { background: ${theme.green4}; }
+    button.wordle-clear { background: ${theme.red}; }
+
+    button.wordle-solve, button.wordle-clear {
+        color: #0008;
+        padding: 5px 30px;
+        font-size: .9rem;
+    }
+
+
+    .wordle-container {
+
+        .board {
+            width: max(400px);
+            height: max(400px);
+            min-width: max(400px);
+            min-height: max(400px);
+
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-gap: 1vw;
+
+            .cell {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border-radius: ${theme.corners}px;
+                overflow: hidden;
+                transition: all .25s ease;
+
+                background: #2228;
+
+                &.right { background: #61865488 }
+                &.wrong { background: #61646688 }
+                &.maybe { background: #9f915188 }
+
+                input {
+                    cursor: pointer;
+                    border-radius: 0;
+                    background: none;
+                    width: 100%;
+                    height: 100%;
+                    text-align: center;
+                    font-size: 1.5rem;
+
+                    :focus {
+                        background: #0005;
+                    }
+                }
+
+                .toggler {
+                    height: 20px;
+                    width: 100%;
+                    display: flex;
+
+                    > div {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+
+            // .cell {
+            //     cursor: pointer;
+
+            //     input {
+            //         cursor: pointer;
+            //     }
+            // }
+        }
+
+        .word-list {
+            max-height: 200px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            overflow: scroll;
+            padding: ${theme.spacing}px;
+            margin-top: auto;
+            background: ${theme.lightColor}22;
+
+            .word-option {
+                borderRadius: 999;
+                background: ${theme.lightColor}22;
+                margin: 2px;
+                padding: 5px 15px;
+                color: ${theme.lightColor};
+                // font-weight: 100;
+                font-size: .9rem;
+                border-radius: 99px;
+
+                &.common {
+                    border: 1px solid ${theme.lightColor};
+                }
+            }
+        }
+
+        .evaluate-btn {
+
+            &.empty {
+                opacity: .2;
+            }
+            // margin: auto;
+            // margin-top: 30px;
+            // display: block;
+            // background: #5b9bea;
+            // padding: 15px 30px;
+            // borderRadius: 10;
+            // color: 'white';
+            // font-size: 20px;
+            // font-weight: 900;
+        }
     }
 
     .top-right {
@@ -613,6 +728,14 @@ export const GlobalStyles = createGlobalStyle`
         }
     }
 
+    
+    .mech-container {
+        .keyboard {
+            // border: 1px solid red;
+            display: inline-block;
+        }
+    }
+
     .bool-toggle {
         width: 40px;
         background: ${theme.red};
@@ -675,22 +798,34 @@ export const GlobalStyles = createGlobalStyle`
     .pointer { cursor: pointer }
     .fullh { height: 100%; }
     .fullw { width: 100%; }
+    .halfw { width: 50%; }
     .full { width: 100%; height: 100%; }
     .notouch { user-select: none; cursor: default; pointer-events: none; }
     .hazy { opacity: 50%; }
     .circle { border-radius: 999px; }
     .contain { overflow: hidden; }
+    .scroll { overflow: scroll; }
     .trans { transition: all .5s ease; }
     .rel { position: relative; }
     .abs { position: absolute; }
     .shrink { transform: scale(0); }
     .hidden { opacity: 0; }
     .outline { border: 1px solid ${theme.lightColor} }
+    .disabled {
+        opacity: .4;
+        pointer-events: none;
+        user-select: none;
+    }
     // .hidden { opacity: 0; transition: opacity .25s ease !important; }
 
     .glass {
         background: ${theme.darkColor}88;
 
+        border-radius: ${theme.spacingSmall}px;
+    }
+
+    .light-glass {
+        background: ${theme.lightColor}88;
         border-radius: ${theme.spacingSmall}px;
     }
 

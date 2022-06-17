@@ -7,8 +7,8 @@ import SketchGallery from './SketchGallery'
 
 const App = () => {
     const [page, setPage] = useState(0)
-
     const [ready, setReady] = useState(false)
+    const [inFocus, setInFocus] = useState(false) // if in daydream, or some other modal where you want to prevent scrolling
 
     // lets get this shit started
     useEffect(() => {
@@ -18,6 +18,14 @@ const App = () => {
     function handlePageChange(pageNum) {
         setPage(pageNum)
     }
+
+    // function handlePageChangeAttempt(pageNum) {
+    //     if (!inFocus) 
+    // }
+
+    // useEffect(() => {
+    //     alert(inFocus)
+    // }, [inFocus])
 
 
     // return <>
@@ -30,13 +38,17 @@ const App = () => {
             <GlobalStyles />
             <ReactPageScroller
                 animationTimer={750}
+                blockScrollUp={inFocus}
+                blockScrollDown={inFocus}
                 pageOnChange={handlePageChange}
                 customPageNumber={page}
             >
                 {[
                     <Landing ready={ready && page==0} goto={num => setPage(num) } />,
                     // <SketchGallery />
-                    <div className='full-page flex center'><SketchGallery ready={ready && page==1} /></div>
+                    <div className='full-page flex center'>
+                        <SketchGallery setInFocus={setInFocus} ready={ready && page==1} />
+                    </div>
                     // <Games ready={ready && page==1} goto={num => setPage(num)}  />
                     // <Animations ready={ready && page==1} />
                 ]}

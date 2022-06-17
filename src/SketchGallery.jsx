@@ -1,16 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import SketchPreview from './sketches/Preview'
 import SketchRunner from './sketches/Runner'
 import Daydreamer from './components/Daydreamer'
+import Path from './components/Path'
 
 const sketches = [
   { implemented: true, id: 'particles', name: 'Particle Mesh', description: '...', },
   { implemented: false, id: 'orbit', name: 'Orbit', description: '...', },
-  { implemented: false, id: 'mech', name: 'Mech', description: '...', },
+  { implemented: true, id: 'mech', name: 'Mech', description: '...', },
   { implemented: false, id: 'matrix', name: 'Raining Code', description: '...', },
   { implemented: false, id: 'lightning', name: 'Lightning', description: '...', },
-  { implemented: false, id: 'wordle', name: 'Wordle Solver', description: '...', },
+  { implemented: true, id: 'wordle', name: 'Wordle Solver', description: '...', },
   { implemented: false, id: 'snake', name: 'Snake', description: '...', },
   { implemented: false, id: 'avoid', name: 'Avoid', description: '...', },
   { implemented: false, id: 'fireworks', name: 'Fireworks', description: '...', },
@@ -18,14 +19,18 @@ const sketches = [
 ]
 
 const SketchGallery = props => {
-  const { ready } = props
+  const { ready, setInFocus } = props
   const [hovered, setHovered] = useState(null)
-  // const [daydream, setDaydream] = useState(false)
-  // const [currentSketch, setCurrentSketch] = useState({ id: 'particles' })
+  
+  // const [currentSketch, setCurrentSketch] = useState({ id: 'wordle' })
   const [currentSketch, setCurrentSketch] = useState(null)
 
+  useEffect(() => {
+    setInFocus(!!currentSketch)
+  }, [currentSketch])
+
   return (
-    <div className='flex col center'>
+    <div className=''>
 
       <h2 className='tcenter'>Animations & Games</h2>
       <p className='tcenter mlb'>Go on, mess around with em.</p>
@@ -45,6 +50,13 @@ const SketchGallery = props => {
             >
               <div className='rel flex center full sketch-preview-container'>
                 <div className={'sketch-preview flex full center pl'}>
+                  {s.implemented && (
+                    <div className='top-left ps'>
+                      <svg width="12" height="11" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <Path on={ready} d="M21.5 2.5L9.5 20L2.5 13.5" stroke="#97cfb3" weight={4} />
+                      </svg>
+                    </div>
+                  )}
                   <SketchPreview ready={ready} sketch={s.id} hovered={s.id === hovered} />
                 </div>
 

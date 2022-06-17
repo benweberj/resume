@@ -34,15 +34,16 @@ class ParticleMesh extends React.Component {
     constructor(props) {
         super(props)
         this.particleRef = React.createRef()
-        this.shit = 'fuck'
-        // this.
-        
     }
 
     componentDidMount() {
         console.log('ref', this.particleRef)
         if (!this.sketch) this.sketch = new p5(this.Sketch, this.particleRef.current)
         console.log(this.state)
+    }
+
+    componentWillUnmount() {
+        this.sketch.remove()
     }
 
     onSettingsChange(key, val) {
