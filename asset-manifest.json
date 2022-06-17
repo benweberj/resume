@@ -1,13 +1,43 @@
 {
   "files": {
-    "main.js": "/resume/static/js/main.cb401a18.js",
+    "main.js": "/resume/static/js/main.237a1777.js",
     "static/media/real.png": "/resume/static/media/real.297eafd4a0891dbe86c0.png",
     "static/media/vec-t.png": "/resume/static/media/vec-t.f6f972922b3a9fceb3fe.png",
     "static/media/options.png": "/resume/static/media/options.5a9b1f24255c107115bc.png",
+    "static/media/CAPS LOCK.mp3": "/resume/static/media/CAPS LOCK.5a72717b81c7281c1feb.mp3",
+    "static/media/X.mp3": "/resume/static/media/X.4c64cef29bace28a2c41.mp3",
+    "static/media/R.mp3": "/resume/static/media/R.1881d60fbc75e635d7c9.mp3",
+    "static/media/T.mp3": "/resume/static/media/T.1881d60fbc75e635d7c9.mp3",
+    "static/media/U.mp3": "/resume/static/media/U.9600c3e13bf9c7806998.mp3",
+    "static/media/O.mp3": "/resume/static/media/O.444a231452c9742be05b.mp3",
+    "static/media/I.mp3": "/resume/static/media/I.2bb2ed8877475e733864.mp3",
+    "static/media/L.mp3": "/resume/static/media/L.16293b0469620987b61c.mp3",
+    "static/media/ENTER.mp3": "/resume/static/media/ENTER.dd8b6e91b2b5d18409c6.mp3",
+    "static/media/P.mp3": "/resume/static/media/P.4738a0036e80ed33a558.mp3",
+    "static/media/C.mp3": "/resume/static/media/C.e6bbc8ec7b1a7adc6b33.mp3",
+    "static/media/F.mp3": "/resume/static/media/F.d0322577cbd8d0e61ad4.mp3",
+    "static/media/K.mp3": "/resume/static/media/K.c0a55371f53425bfd5c3.mp3",
+    "static/media/D.mp3": "/resume/static/media/D.d1771161b22b38949408.mp3",
+    "static/media/J.mp3": "/resume/static/media/J.b0b005d69801d7ceb804.mp3",
+    "static/media/S.mp3": "/resume/static/media/S.cc8b64eeb2e40c6702df.mp3",
+    "static/media/BACKSPACE.mp3": "/resume/static/media/BACKSPACE.36294395b94aee2c3b45.mp3",
+    "static/media/G.mp3": "/resume/static/media/G.c4ec5ac8eb2f42d88b5e.mp3",
+    "static/media/W.mp3": "/resume/static/media/W.67db3db85124ccc27493.mp3",
+    "static/media/SPACE.mp3": "/resume/static/media/SPACE.f0b0aa31415480b76e77.mp3",
+    "static/media/Q.mp3": "/resume/static/media/Q.5d3ba338ca7f1877e225.mp3",
+    "static/media/B.mp3": "/resume/static/media/B.3c5aaef9f7eafd8ec3c4.mp3",
+    "static/media/Z.mp3": "/resume/static/media/Z.e8c363d9940441d82fbf.mp3",
+    "static/media/Y.mp3": "/resume/static/media/Y.bf50849d76a367daa928.mp3",
+    "static/media/H.mp3": "/resume/static/media/H.04bf710300690d0e0518.mp3",
+    "static/media/E.mp3": "/resume/static/media/E.13fa141046c5fcf8d8f3.mp3",
+    "static/media/V.mp3": "/resume/static/media/V.4bd707804e94e7003b17.mp3",
+    "static/media/A.mp3": "/resume/static/media/A.5afd3bfc0de0484ca00d.mp3",
+    "static/media/N.mp3": "/resume/static/media/N.77a349a1e1cd2b4e9005.mp3",
+    "static/media/M.mp3": "/resume/static/media/M.d647a72c106a242d72d5.mp3",
     "index.html": "/resume/index.html",
-    "main.cb401a18.js.map": "/resume/static/js/main.cb401a18.js.map"
+    "main.237a1777.js.map": "/resume/static/js/main.237a1777.js.map"
   },
   "entrypoints": [
-    "static/js/main.cb401a18.js"
+    "static/js/main.237a1777.js"
   ]
 }
