@@ -6,15 +6,15 @@ import Daydreamer from './components/Daydreamer'
 import Path from './components/Path'
 
 const sketches = [
-  { implemented: true, id: 'particles', name: 'Particle Mesh', description: '...', },
-  { implemented: false, id: 'orbit', name: 'Orbit', description: '...', },
-  { implemented: true, id: 'mech', name: 'Mech', description: '...', },
-  { implemented: false, id: 'matrix', name: 'Raining Code', description: '...', },
-  { implemented: false, id: 'lightning', name: 'Lightning', description: '...', },
-  { implemented: true, id: 'wordle', name: 'Wordle Solver', description: '...', },
-  { implemented: false, id: 'snake', name: 'Snake', description: '...', },
-  { implemented: false, id: 'avoid', name: 'Avoid', description: '...', },
-  { implemented: false, id: 'fireworks', name: 'Fireworks', description: '...', },
+  { implemented: true, id: 'particles', name: 'Particle Mesh', description: '...', github: 'https://github.com/benweberj/particle_mesh'},
+  { implemented: false, id: 'orbit', name: 'Orbit', description: '...', github: ''},
+  { implemented: true, id: 'mech', name: 'Mech', description: '...', github: ''},
+  { implemented: true, id: 'matrix', name: 'Raining Code', description: '...', github: 'https://github.com/benweberj/matrix'},
+  { implemented: false, id: 'lightning', name: 'Lightning', description: '...', github: 'https://github.com/benweberj/lightning'},
+  { implemented: true, id: 'wordle', name: 'Wordle Solver', description: '...', github: ''},
+  { implemented: false, id: 'snake', name: 'Snake', description: '...', github: ''},
+  { implemented: false, id: 'avoid', name: 'Avoid', description: '...', github: ''},
+  { implemented: false, id: 'fireworks', name: 'Fireworks', description: '...', github: ''},
   // { id: 'lightspeed', name: 'LightSpeed', description: '...', },
 ]
 
@@ -22,7 +22,7 @@ const SketchGallery = props => {
   const { ready, setInFocus } = props
   const [hovered, setHovered] = useState(null)
   
-  // const [currentSketch, setCurrentSketch] = useState({ id: 'wordle' })
+  // const [currentSketch, setCurrentSketch] = useState({ id: 'matrix' })
   const [currentSketch, setCurrentSketch] = useState(null)
 
   useEffect(() => {
@@ -32,8 +32,8 @@ const SketchGallery = props => {
   return (
     <div className=''>
 
-      <h2 className='tcenter'>Animations & Games</h2>
-      <p className='tcenter mlb'>Go on, mess around with em.</p>
+      <h2 className='tcenter trans' style={{ transform: !ready && 'scale(0)', filter: !ready && 'blur(10px)' }}>Animations & Games</h2>
+      <p className='tcenter mlb trans' style={{ transform: !ready && 'scale(0)', filter: !ready && 'blur(10px)', transitionDelay: '.5s' }}>Go on, mess around with em.</p>
 
       <div className='sketch-gallery'>
 
@@ -50,21 +50,29 @@ const SketchGallery = props => {
             >
               <div className='rel flex center full sketch-preview-container'>
                 <div className={'sketch-preview flex full center pl'}>
-                  {s.implemented && (
+                  {s.implemented ? (
                     <div className='top-left ps'>
                       <svg width="12" height="11" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <Path on={ready} d="M21.5 2.5L9.5 20L2.5 13.5" stroke="#97cfb3" weight={4} />
+                      </svg>
+                    </div>
+                  ) : (
+                    <div className='top-left ps'>
+                      <svg width="15" height="15" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        {/* <circle cx="11.5" cy="11.5" r="10.5" stroke="black" stroke-width="2"/> */}
+                        <Path on={ready} d='M1,11.5a10.5,10.5 0 1,0 21,0a10.5,10.5 0 1,0 -21,0' weight={2} />
+                        <Path on={ready} d="M11 5V13L17 15.5" weight={2} />
                       </svg>
                     </div>
                   )}
                   <SketchPreview ready={ready} sketch={s.id} hovered={s.id === hovered} />
                 </div>
 
-                <div className='flex col center glass ps sketch-details'>
+                <div className='flex col center ps sketch-details'>
                   {s.implemented ? <>
                     <h4 className='tcenter'>{s.name}</h4>
                     <div className='flex wrap center sketch-buttons'>
-                      <button className='code'>Code</button>
+                      <button className={`code ${!s.github && 'disabled'}`} onClick={() => window.open(s.github, '_blank')}>Code</button>
                       <button className='demo' onClick={() => setCurrentSketch(s)}>Demo</button>
                     </div>
                   </> : <>
