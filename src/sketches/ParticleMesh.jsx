@@ -16,18 +16,18 @@ class ParticleMesh extends React.Component {
 
     state = {
         options: {
-            particleCount: 70,
+            // particleCount: 70,
             pullDistance: 100,
             attractionForce: 3,
             repelMultiplier: 1,
+            bounceDecay: .5,
+            keepInbounds: true,
             nodesAttract: true,
             repelOnPress: true,
             drawConnections: true,
             drawParticles: true,
             attractedToMouse: false,
-            keepInbounds: true,
-            debug: true,
-            bounceDecay: .5,
+            debug: false,
         }
     }
 
@@ -47,10 +47,7 @@ class ParticleMesh extends React.Component {
     }
 
     onSettingsChange(key, val) {
-
         this.setState({ options: { ...this.state.options, [key]: val} })
-        // console.log(`setting ${key} to ${val}`)
-        console.log("options", this.state)
     }
 
     Sketch = p => {
@@ -58,7 +55,7 @@ class ParticleMesh extends React.Component {
         let particles = []
         const parentId = 'sketch-container'
         const settingsId = 'sketch-options'
-        let birds;
+        // let birds;
         let i = 0
         let cooldownTime = 150 // ms cooldown after spawning particle
         let timer = null
@@ -89,14 +86,6 @@ class ParticleMesh extends React.Component {
     
         const getMouse = () => p.createVector(p.mouseX, p.mouseY)
     
-        // p.updateWithProps = props => {
-        //     // console.log('updating options to:', props.options)
-        //     if (!props.options) return
-        //     const newOptions = JSON.parse(JSON.stringify(props.options))
-        //     options = newOptions
-        //     p.setup()
-        // }
-    
         p.setup = () => {
             const d = dim(parentId)
             canvas = p.createCanvas(d.width, d.height);
@@ -118,10 +107,8 @@ class ParticleMesh extends React.Component {
         }
     
         p.draw = () => {
-            
-            // const options = this.state.options
-            const mouse = getMouse()
             const options = this.state.options
+            const mouse = getMouse()
             
             p.clear()
             
@@ -131,7 +118,6 @@ class ParticleMesh extends React.Component {
                 p.stroke('#fff1')
                 p.strokeWeight(1)
                 p.ellipse(mouse.x, mouse.y, options.pullDistance*2)
-                
             }
 
             particles.forEach(particle => {
@@ -148,7 +134,6 @@ class ParticleMesh extends React.Component {
 
     
                 if (options.attractedToMouse) {
-                    
                     let mouseDist = particle.pos.copy().dist(mouse);
                     
                     if (options.debug && (mouseDist < options.pullDistance)) {
@@ -185,7 +170,6 @@ class ParticleMesh extends React.Component {
                         }
                         if (options.nodesAttract && dist < options.pullDistance) {
                             let dir = other.pos.copy().sub(particle.pos)
-                            // dir.mult(.0001)
                             const strength = 1/Math.pow(dist, 2)
                             dir.mult(p.constrain(options.attractionForce * strength, 0, options.attractionForce*.001))
                             particle.applyForce(dir)
@@ -197,14 +181,10 @@ class ParticleMesh extends React.Component {
     }
 
     render() {
-
-        // return <h1>WHAT THR FUCK</h1>
         return (
-            // <div id='sketch-container' className='full flex center dark-bg rounded contain rel outline'>
             <div id='sketch-container' className='full'>
                 <div ref={this.particleRef} />
                 <SketchOptions options={this.state.options} onChange={this.onSettingsChange.bind(this)} />
-                {/* <SketchOptions options={options} onChange={handleOptionsChange} /> */}
             </div>
         )
     }
