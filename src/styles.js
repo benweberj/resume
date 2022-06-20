@@ -224,6 +224,12 @@ export const GlobalStyles = createGlobalStyle`
             background: ${theme.lightColor};
             color: ${theme.darkColor};
         }
+
+        &.disabled {
+            user-select: none;
+            pointer-events: none;
+            opacity: .5;
+        }
     }
 
     #sketch-options {
@@ -236,15 +242,13 @@ export const GlobalStyles = createGlobalStyle`
         backdrop-filter: blur(5px);
         padding: ${theme.spacingSmall}px;
         transition: transform .5s ease, opacity .5s ease;
+        z-index: 2;
 
         &.closed {
             transform: translateX(-100%);
             opacity: 0;
         }
 
-        button.close {
-            // background: red;
-        }
 
         > div {
             padding-bottom: 4px;
@@ -262,6 +266,7 @@ export const GlobalStyles = createGlobalStyle`
 
     .show-sketch-options {
         position: absolute;
+        z-index: 99999999;
         top: 10px;
         left: 10px;
         width: 25px;
@@ -577,6 +582,7 @@ export const GlobalStyles = createGlobalStyle`
             justify-content: center;
             align-items: center;
             transition: all .5s ease;
+            // background: none;
 
             .sketch-preview-container {
                 transition: all .5s ease;
@@ -597,6 +603,7 @@ export const GlobalStyles = createGlobalStyle`
             }
             
             :hover {
+                // background: none;
                 .sketch-preview-container {
                     .sketch-preview {
                         transform: scale(.8);
@@ -606,7 +613,7 @@ export const GlobalStyles = createGlobalStyle`
 
                 .sketch-details {
                     opacity: 1;
-                    backdrop-filter: blur(2px);
+                    // backdrop-filter: blur(2px);
                 }
             }
         }
