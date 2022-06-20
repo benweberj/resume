@@ -3,7 +3,9 @@ import React, { useState } from 'react'
 import BoolToggle from '../components/BoolToggle'
 
 const SketchOptions = props => {
-    const { options={}, onChange } = props
+    const { options={}, onChange, apply=false } = props
+    // apply boolean: if true, add a button to manually apply the new options
+    // Sketches that require it will handle the onclick logic themselves
     const [closed, setClosed] = useState(false)
 
     // function toggle(name) {
@@ -27,7 +29,8 @@ const SketchOptions = props => {
                         <input onChange={e => onChange(name, e.target.value)} value={val} />
                     </div>
                 })}
-                <button className='close' onClick={() => setClosed(true)}>close</button>
+                <button className='mst' onClick={() => setClosed(true)}>close</button>
+                {apply && <button className='msl' id='apply-sketch-options'>apply</button>}
             </div>
 
             <img
