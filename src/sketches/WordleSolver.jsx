@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 
 import WORD_LIST, { commonWords } from './words'
+// const WORD_LIST = ['niche', 'space', 'mochi', 'mocha']
 
 const alphabet = 'abcdefghijklmnopqrstuvwxyz'
 const validChar = c => c.length === 1 && alphabet.includes(c)
@@ -98,32 +99,77 @@ const WordleSolver = () => {
          }
       })
 
+      console.log('states: ', states)
+
       const spotsFilter = word => {
+         console.log('word: ', word)
          for (let i = 0; i < 5; i++) {
             const curChar = word[i]
             
+            if (Object.keys(rights).includes(`${i}`) && rights[`${i}`] !== curChar){
+               console.log(`${rights[`${i}`]} should be at index ${i}, not ${curChar} `)
+               return false
+            }
+
             let charState = states[curChar]
             if (charState) {
-               if (charState.length===0) return false
+               if (charState.length===0){
+                  console.log(`we know ${curChar} doesnt appear in the word`)
+                  return false
+               }
 
                if (charState.length===1) {
                   if (typeof charState[0] === 'object') {
                      const spot1 = charState[0][0]
                      const spot2 = charState[0][1]
                      
-                     if (!(word[spot1]===curChar && word[spot2]===curChar)) return false
+                     if (!(word[spot1]===curChar && word[spot2]===curChar)){
+                        console.log(`doesnt contain ${curChar} at specified indices ${spot1} and ${spot2}`)
+                        return false
+                     }
                   }
-               } else if (!charState.includes(i)) return false
+               } else if (!charState.includes(i)){
+                  console.log(`our states object determined a ${curChar} cant appear at index ${i}`)
+                  return false
+               }
 
-            } else if (Object.keys(rights).includes(`${i}`)) return false
+            } else {
+               // we don't know anything about this letter other than it shouldn't be right here
+               if (Object.keys(rights).includes(`${i}`)){
+                  console.log(`${curChar} cant appear here because we know ${rights[`${i}`]} is at index ${i}`)
+                  return false
+               }
+            }
          }
 
-         for (let m of maybes) if (!word.includes(m)) return false
-         
+         for (let i = 0; i < maybes.length; i++) {
+            if (!word.includes(maybes[i])){
+               console.log(`doesnt contain ${maybes[i]} and we know it should somewhere`)
+               return false
+            }
+         }
+         console.log('yep this one works')
+         console.log('\n')
          return true
       }
 
-      setPossibleWords(WORD_LIST.filter(spotsFilter))
+      setPossibleWords(WORD_LIST.filter(spotsFilter).sort((a,b) => {
+         function unique(word) {
+            const s = {}
+            for (let i = 0; i < word.length; i++) {
+               s[word[i]] = 'anything lol'
+            }
+            return Object.keys(s).length===word.length
+         }
+         const ua = unique(a)
+         const ub = unique(b)
+         if (ua && ub) {
+            return 0
+         } else if (ua) {
+            return -1
+         } else return 1
+
+      }))
    }
 
 
